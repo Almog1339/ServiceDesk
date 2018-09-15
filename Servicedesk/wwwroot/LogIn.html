@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="Css/login.css" />
+    <script src="Js/angular.min.js"></script>
+    <script src="Js/angular-route.min.js"></script>
+</head>
+<body ng-app="">
+    <div class="grad"></div>
+    <div class="body"></div>
+   
+    <form name="frm" novalidate>
+
+        <div class="login">
+            <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true" />
+            <br />
+            <input type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true" />
+            <br />
+            <input type="button" value="Login" style="width:130px" />
+            <input type="button" ng-click="isHidden" value="Forgot password" style="width:130px" /><br />
+
+        </div>
+        <!--Need to fix the isHidden tag!!!!!! -->
+    
+        <div class="PasswordReset" ng-hide="!isHidden" >
+            <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true" />
+            <br />
+            <input type="button" value="Reset Password" style="width:130px" />
+            <input type="button" value="back"  style="width:130px"/>
+        </div>
+   </form>
+    <!--<script>
+        var app = angular.module('app', []);
+
+        app.controller('loginCtrl', ['$scope', function ($scope) {
+
+        }];
+
+
+    </script>-->
+</body>
+</html>

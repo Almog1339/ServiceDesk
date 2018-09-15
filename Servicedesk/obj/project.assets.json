@@ -11506,11 +11506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\almog\\OneDrive\\Desktop\\code\\Servicedesk\\Servicedesk\\Servicedesk.csproj",
+      "projectUniqueName": "C:\\Users\\almog\\Documents\\GitHub\\ServiceDesk\\Servicedesk\\Servicedesk.csproj",
       "projectName": "Servicedesk",
-      "projectPath": "C:\\Users\\almog\\OneDrive\\Desktop\\code\\Servicedesk\\Servicedesk\\Servicedesk.csproj",
+      "projectPath": "C:\\Users\\almog\\Documents\\GitHub\\ServiceDesk\\Servicedesk\\Servicedesk.csproj",
       "packagesPath": "C:\\Users\\almog\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\almog\\OneDrive\\Desktop\\code\\Servicedesk\\Servicedesk\\obj\\",
+      "outputPath": "C:\\Users\\almog\\Documents\\GitHub\\ServiceDesk\\Servicedesk\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
