@@ -3,29 +3,35 @@
 <head>
     <meta charset="utf-8" />
     <title>Service Desk Dashboard</title>
-    <link rel="stylesheet" href="Css/Dashboard.css" />
-    <script src="Js/angular.min.js"></script>
-    <script src="Js/DashBoard.js"></script>
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <style >
+
+    </style>
 </head>
-<body ng-app="Dashboard" ng-controller="DashController">
+<body ng-app="">
+    <div class="container">
+        <div class="dropdown">
+            <h1>Service Desk Dashboard</h1>
 
-    <div class="header">
-        <a href=""><input type="image" src="Img/ServiceDesk.jpg" style="width: 113px; height: 65px" /></a>
-        <a href=""><input type="image" src="Img/settings.png" ng-model="Settings" style="width:61px; height:61px; float:right" /></a>
-        <h1>Service Desk Dashboard</h1>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary"
+                 <a class="navbar-brand" href="#"></a>
+            <div class="btn-group btn-group-md" role="group">
+                <input type="button" value="New Request" class="btn btn-defult" /><br />
+                <input type="button" value="New Incident" class="btn btn-defult"><br />
+                <input type="button" value="New Task" class="btn btn-defult"><br />
+                <input type="button" value="Inventory" class="btn btn-defult"><br />
+                <input type="button" value="Contact list" class="btn btn-defult"><br />
+                <input type="button" value="Home Page" class="btn btn-defult"><br />
+            </div>
+            </nav>
+            <div class="main">
 
+            </div>
+        </div>
     </div>
-    <div class="menu">
-        <a href="">New Request</a><br />
-        <a href="">New Incident</a><br />
-        <a href="">New Task</a><br />
-        <a href="">Inventory</a><br />
-        <a href="">Contact list</a><br />
-        <a href="">Home Page</a>         <br />
-    </div>
-    <div class="main">
-        test
-    </div>
-    <script src="Js/DashBoard.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="Js/bootstrap.min.js"></script>
 </body>
 </html>
