@@ -21,8 +21,8 @@
                 <input type="button" ng-click="divShowHide=true" value="Forgot password" style="width:130px" /><br />
             </div>
         </form>
-        <form novalidate ng-hide="!divShowHide">
-            <div class="PasswordReset" ng-show="!divShowHide">
+        <form novalidate ng-show="divShowHide">
+            <div class="PasswordReset">
                 <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true" />
                 <br />
                 <input type="button" value="Reset Password" style="width:130px" />
