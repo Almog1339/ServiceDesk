@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Servicedesk.wwwroot;
 
 namespace Servicedesk
 {
@@ -17,7 +18,10 @@ namespace Servicedesk
     {
         public Startup(IConfiguration configuration)
         {
+
             Configuration = configuration;
+            string conn1 = configuration.GetConnectionString("conn1");
+            DBHelper.ConnectionString = conn1;
         }
 
         public IConfiguration Configuration { get; }

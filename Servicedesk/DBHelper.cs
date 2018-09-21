@@ -9,8 +9,7 @@ namespace Servicedesk.wwwroot
     public class DBHelper
     {
         public static string CONN_STRING;
-        public static string ConnectionString
-        {
+        public static string ConnectionString{
             set
             {
                 if (CONN_STRING == null)
@@ -18,11 +17,11 @@ namespace Servicedesk.wwwroot
             }
         }
     }
-    public static class Extension
+    public static class Extensions
     {
-        public static string GetStingOrNull(this SqlDataReader dr,int i)
+        public static string GetStringOrNull(this SqlDataReader dr, int i)
         {
-            if (dr.isDBNull(i))
+            if (dr.IsDBNull(i))
                 return null;
             return dr.GetString(i);
         }
