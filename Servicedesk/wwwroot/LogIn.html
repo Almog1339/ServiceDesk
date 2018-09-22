@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>ServiceDesk Login</title>
     <link rel="stylesheet" type="text/css" href="Css/login.css" />
     <script src="Js/angular.min.js"></script>
 
 </head>
-<body ng-app="">
+<body ng-app="LoginForm" ng-controller="LoginCtrlFrm">
     <div class="body"></div>
     <div class="grad">
 
@@ -15,10 +15,12 @@
             <div class="login">
                 <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true" />
                 <br />
-                <input type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true" />
+                <input type="password" name="password" placeholder="Password"  ng-model="user.password" ng-required="true" />
                 <br />
-                <input type="button" value="Login" style="width:130px" />
+                <input type="button" ng-click="LoginCtrlFrm($http)" value="Login" style="width:130px" />
                 <input type="button" ng-click="divShowHide=true" value="Forgot password" style="width:130px" /><br />
+                <span ng-model="LoginForm">{{myWelcome}}</span>
+
             </div>
         </form>
         <form novalidate ng-show="divShowHide">
@@ -30,5 +32,21 @@
             </div>
         </form>
     </div>
+    <!--<script>
+        var Login = angular.module('LoginForm', []);
+
+        Login.controller('LoginCtrlFrm', function ($scope, $http) {
+            $http({
+                method: "Get",
+                url: "ServiceDaskDash.html"
+            }).then(function isSuccess(response) {
+                $scope.myWelcome = response.data;
+            }, function isError(response) {
+                $scope.myWelcome = response.statusText;
+            });
+        });
+
+    </script>-->
+
 </body>
 </html>
