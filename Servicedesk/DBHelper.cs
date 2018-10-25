@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
-namespace Servicedesk.wwwroot
+namespace Servicedesk
 {
     public class DBHelper
     {
@@ -13,7 +15,7 @@ namespace Servicedesk.wwwroot
             set
             {
                 if (CONN_STRING == null)
-                    CONN_STRING = value;
+                    CONN_STRING = "Data Source = DESKTOP - O8IU0PQ\\SQLEXPRESS; Initial Catalog = ServiceDesk; User ID = sa; Password = Q1w2q1w2";
             }
         }
     }

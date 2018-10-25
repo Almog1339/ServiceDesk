@@ -17,9 +17,8 @@
                 <br />
                 <input type="password" name="password" placeholder="Password"  ng-model="user.password" ng-required="true" />
                 <br />
-                <input type="button" ng-click="LoginCtrlFrm($http)" value="Login" style="width:130px" />
+                <input type="button" ng-click="btnSent()" value="Login" style="width:130px" />
                 <input type="button" ng-click="divShowHide=true" value="Forgot password" style="width:130px" /><br />
-                <span ng-model="LoginForm">{{myWelcome}}</span>
 
             </div>
         </form>
@@ -32,7 +31,7 @@
             </div>
         </form>
     </div>
-    <!--<script>
+    <script>
         var Login = angular.module('LoginForm', []);
 
         Login.controller('LoginCtrlFrm', function ($scope, $http) {
@@ -46,7 +45,8 @@
             });
         });
 
-    </script>-->
+    </script>
+
 
 </body>
 </html>

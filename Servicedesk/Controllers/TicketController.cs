@@ -9,8 +9,14 @@ namespace Servicedesk.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DashboardController : ControllerBase
+    public class TicketController : ControllerBase
     {
+       [HttpGet]
+       public List<Tickets> GetTickets()
+        {
+            Tickets ticket = new Tickets();
+            return ticket.GetTickets();
+        }
 
     }
 }
