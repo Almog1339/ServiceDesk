@@ -11,13 +11,7 @@ namespace Servicedesk
     public class DBHelper
     {
         public static string CONN_STRING;
-        public static string ConnectionString{
-            set
-            {
-                if (CONN_STRING == null)
-                    CONN_STRING = "Data Source = DESKTOP - O8IU0PQ\\SQLEXPRESS; Initial Catalog = ServiceDesk; User ID = sa; Password = Q1w2q1w2";
-            }
-        }
+
     }
     public static class Extensions
     {

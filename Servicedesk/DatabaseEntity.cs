@@ -14,23 +14,27 @@ namespace Servicedesk
         protected abstract Column PrimaryKey { get; }
 
         public delegate T ItemCreator<T>(SqlDataReader dr);
-        private string GetColumnsCommaSeparated(bool withPrimaryKey,bool withAtSign = false)
+        private string GetColumnsCommaSeparated(bool withPrimaryKey, bool withAtSign = false)
         {
             StringBuilder sb = new StringBuilder();
-            foreach(Column c in Columns) {
-                if (!withPrimaryKey && c.ColumnType == ColumnType.PRIMARY_KEY) continue;
-                if (withAtSign) {
+            foreach (Column col in Columns) {
+                if (!withPrimaryKey && col.ColumnType == ColumnType.PRIMARY_KEY)
+                    continue;
+                if (withAtSign)
                     sb.Append("@");
-                    sb.Append(c.Name + ",");
-                }
+                sb.Append(col.Name + ",");
             }
             if (Columns.Length > 0) sb.Remove(sb.Length - 1, 1);
             return sb.ToString();
         }
+
+
+
         public string SelectSql()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT");
+            sb.Append("SELECT ");
+            sb.Append(GetColumnsCommaSeparated(true));
             sb.Append(" FROM " + TableName);
             return sb.ToString();
         }
@@ -39,7 +43,7 @@ namespace Servicedesk
             List<T> item = new List<T>();
             using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
                 conn.Open();
-                using(SqlCommand command = new SqlCommand(SelectSql(), conn)) {
+                using (SqlCommand command = new SqlCommand(SelectSql(), conn)) {
                     using (SqlDataReader dr = command.ExecuteReader()) {
                         while (dr.Read()) {
                             T databaseEntity = itemCreator(dr);
@@ -54,12 +58,12 @@ namespace Servicedesk
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
                 conn.Open();
-                using(SqlCommand cmd = new SqlCommand(DeleteSQL(), conn)) {
+                using (SqlCommand cmd = new SqlCommand(DeleteSQL(), conn)) {
                     cmd.Parameters.AddWithValue("@" + PrimaryKey.Name, PrimaryKeyToBeDeleted);
-                    return cmd.ExecuteNonQuery() == 1; 
+                    return cmd.ExecuteNonQuery() == 1;
                 }
             }
-                
+
         }
 
         private string DeleteSQL()
@@ -71,5 +75,21 @@ namespace Servicedesk
             sb.Append("DELETE FROM " + TableName + "WHERE " + PrimaryKey + "=@" + PrimaryKey);
             return sb.ToString();
         }
+
+        public string InsertSQL()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("INSERT INTO" + TableName + " (");
+            sb.Append(GetColumnsCommaSeparated(false) + ") VALUSE (");
+            sb.Append(GetColumnsCommaSeparated(false, true) + ")");
+            return sb.ToString();
+        }
+
+        public bool Update(SqlParameter[] parameters)
+        {
+            return true;
+        }
+
     }
 }
+

@@ -19,8 +19,8 @@ namespace Servicedesk
         {
 
             Configuration = configuration;
-            string conn1 = configuration.GetConnectionString("conn1");
-            DBHelper.ConnectionString = conn1;
+            DBHelper.CONN_STRING  = configuration.GetConnectionString("conn1");
+         
         }
 
         public IConfiguration Configuration { get; }

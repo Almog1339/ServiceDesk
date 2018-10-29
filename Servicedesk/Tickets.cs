@@ -9,15 +9,15 @@ namespace Servicedesk
     public class Tickets : DatabaseEntity
     {
         public int TicketNumber { get; set; }
-        public string ShortDiscription { get; set; }
         public string Type { get; set; }
+        public string ShortDescription { get; set; }
         public string Status { get; set; }
         public int OpenBy { get; set; }
         public int HandledBy { get; set; }
 
         private static readonly Column[] columns = {
             new Column("TicketNumber", ColumnType.PRIMARY_KEY),
-            new Column("ShortDiscription",ColumnType.STRING),
+            new Column("ShortDescription",ColumnType.STRING),
             new Column("Type",ColumnType.STRING),
             new Column("Status",ColumnType.STRING),
             new Column("OpenBy",ColumnType.INT),
@@ -32,14 +32,36 @@ namespace Servicedesk
 
         public List<Tickets> GetTickets()
         {
-            return GetList<Tickets>(dr => new Tickets() {
+            return GetList(dr => new Tickets() {
                 TicketNumber = dr.GetInt32(0),
-                Type = dr.GetStringOrNull(1),
-                ShortDiscription = dr.GetStringOrNull(2),
-                Status = dr.GetStringOrNull(3),
+                Type = dr.GetString(1),
+                ShortDescription = dr.GetString(2),
+                Status = dr.GetString(3),
                 OpenBy = dr.GetInt32(4),
                 HandledBy = dr.GetInt32(5),
+
             });
         }
+
+        private List<SqlParameter> GetSqlParameters(bool withTicketNumber = true)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            if (withTicketNumber)
+                parameters.Add(new SqlParameter("@TicketNumber",TicketNumber));
+                parameters.Add(new SqlParameter("@Type",Type));
+                parameters.Add(new SqlParameter("@ShortDescription", ShortDescription));
+                parameters.Add(new SqlParameter("@Status", Status));
+                parameters.Add(new SqlParameter("@OpenBy", OpenBy));
+                parameters.Add(new SqlParameter("@HandledBy", HandledBy));
+
+                foreach (SqlParameter param in parameters)
+                {
+                    if (param.Value == null) {
+                        param.Value = DBNull.Value;
+                    }
+                }
+                return parameters;
+            }
+        }
     }
-}
+

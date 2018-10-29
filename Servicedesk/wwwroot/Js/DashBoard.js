@@ -1,18 +1,22 @@
 ﻿var Dashboard = angular.module("Dashboard", []);
 
 Dashboard.controller('list', ['$scope', function ($scope) {
-    $scope.Buttons = ['New Request ','New Incident ','Inventory ','Contact list '];
-}]);
+    $scope.Buttons = ['New Request', 'New Incident', 'Inventory', 'Contact list', 'Knowledge base'];
+    }]);
 
 Dashboard.controller('ContactList', ['$scope', function ($scope) {
     $scope.info = ['First Name ','Last Name ','Email ','Title '];
 }]);
 
-Dashboard.controller('TicketsTable', ['$scope', function ($scope) {
-    $scope.Ticket = ['Ticket Number', 'Type', 'Short Discription', 'Open By', 'Handled by'];
+Dashboard.controller('TicketsTable', ['$scope','$http', function ($scope , $http) {
+    $scope.Ticket = ['Ticket Number', 'Type', 'Short Description', 'Open By', 'Handled by', 'priority'];
+
+    $scope.GetTicketData = function () {
+        $http.get('api/ticket').then(function (response) {
+            $scope.ticketsData = response.data;
+        });
+    };
+    $scope.GetTicketData();
 }]);
 
-Dashboard.controller('TicketData', ['$scope', function ($scoe) {
-    $scoe.Ticket = [];
-}]);
 

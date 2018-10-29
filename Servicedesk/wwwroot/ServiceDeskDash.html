@@ -14,26 +14,48 @@
     <div class="container">
         <h1>Service Desk Dashboard</h1>
         <!-- Nav Bar Start-->
-        <aside>
-            <div ng-controller="list" class="nav-tabs navbar">
-                <a ng-repeat="b in Buttons">{{b}}</a>
+        <div>
+            <div class="navbar-toggler" ng-click="toggleBtn= !toggleBtn">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-        </aside>
+            <div ng-show="toggleBtn" ng-controller="list" class="sidebar-nav">
+
+                <ul>
+                    <li><img src="Css/Image's/LogonAvatar.jpg" style="width:80px; height:80px; margin:20%;margin-top:-20px;" /></li>
+                    <li ng-repeat="b in Buttons">{{b}} 
+                        
+                    </li> 
+                </ul>
+            </div>
+        </div>
+
         <!-- Nav Bar Ends-->
         <div>
+
             <!-- First Table Start-->
             <div ng-controller="TicketsTable">
                 <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr><td ng-repeat="T in Ticket">{{T}}</td></tr>
-                    </thead>
-                    <tr><td ng-repeat="T in TicketData">{{T}}</td></tr>
+                    <th><a ng-click="sortBy('Ticket Number')">Ticket Number</a></th>
+                    <th><a ng-click="sortBy('Type')">Type</a></th>
+                    <th><a>Short Description</a></th>
+                    <th><a ng-click="sortBy('Open By')">Open By</a></th>
+                    <th><a ng-click="sortBy('Handled by')">Handled by</a></th>
+                    <th><a ng-click="sortBy('priority')"></a>Priority</th>
+                    <tr ng-repeat="data in ticketsData"><td>{{data.ticketNumber}}</td></tr>
                 </table>
             </div>
             <!-- First Table Ends-->
-            <div></div>
-            <div></div>
-            <div></div>
+            <div>
+                <canvas></canvas>
+            </div>
+            <div>
+                <canvas></canvas>
+            </div>
+            <div>
+                <canvas></canvas>
+            </div>
         </div>
     </div>
     <script src="Js/bootstrap.min.js"></script>

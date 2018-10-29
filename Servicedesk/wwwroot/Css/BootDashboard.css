@@ -39,6 +39,8 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    padding:0px;
+    margin:0px;
 }
 
 html {
@@ -4212,6 +4214,10 @@ input[type="button"].btn-block {
     background-color: transparent;
     border: 1px solid transparent;
     border-radius: 0.25rem;
+    position:absolute;
+    left:200px;
+    top:20px;
+
 }
 
     .navbar-toggler:hover, .navbar-toggler:focus {
@@ -9710,26 +9716,37 @@ a.text-dark:hover, a.text-dark:focus {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 Extra Custom Css!!!!*/
 
-/*.sidebar-nav {
+.sidebar-nav {
+    margin:0px;
+    padding:0px;
     height: 100%;
     width: 200px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color:#151719;
     overflow-x: hidden;
     padding-top: 20px;
+    display:block;
+   
 }
-.sidenav a
-{
-    padding: 6px 6px 6px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-}
+    .sidebar-nav ul li {
+        font-size: 25px;
+        color: rgba(230,230,230,0.9);
+        list-style: none;
+        padding: 15px 10px;
+        border-bottom: 1px solid rgba(100,100,100,0.3)
+    }
 
-    .sidenav a:hover {
-        color: #f1f1f1;
-    }*/
+        .sidebar-nav ul li:hover {
+            color: white;
+        }
+
+.navbar-toggler span{
+    display:block;
+    width:30px;
+    height:5px;
+    background-color:black;
+    margin:5px 0px;
+}
