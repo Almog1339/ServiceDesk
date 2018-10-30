@@ -33,9 +33,9 @@
 
         <!-- Nav Bar Ends-->
         <div>
-
             <!-- First Table Start-->
             <div ng-controller="TicketsTable">
+                Tickets Table
                 <table class="table table-bordered table-hover">
                     <th><a ng-click="sortBy('Ticket Number')">Ticket Number</a></th>
                     <th><a ng-click="sortBy('Type')">Type</a></th>
@@ -44,6 +44,12 @@
                     <th><a ng-click="sortBy('Handled by')">Handled by</a></th>
                     <th><a ng-click="sortBy('priority')"></a>Priority</th>
                     <tr ng-repeat="data in ticketsData"><td>{{data.ticketNumber}}</td></tr>
+                    <tr ng-repeat="data in ticketsData"><td>{{data.Type}}</td></tr>
+                    <tr ng-repeat="data in ticketsData"><td>{{data.ShortDescription}}</td></tr>
+                    <tr ng-repeat="data in ticketsData"><td>{{data.Status}}</td></tr>
+                    <tr ng-repeat="data in ticketsData"><td>{{data.OpenBy}}</td></tr>
+                    <tr ng-repeat="data in ticketsData"><td>{{data.HandledBy}}</td></tr>
+                    <tr ng-repeat="data in ticketsData"><td>{{data.Priority}}</td></tr>
                 </table>
             </div>
             <!-- First Table Ends-->

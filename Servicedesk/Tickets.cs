@@ -14,6 +14,7 @@ namespace Servicedesk
         public string Status { get; set; }
         public int OpenBy { get; set; }
         public int HandledBy { get; set; }
+        public string Priority { get; set; }
 
         private static readonly Column[] columns = {
             new Column("TicketNumber", ColumnType.PRIMARY_KEY),
@@ -22,6 +23,7 @@ namespace Servicedesk
             new Column("Status",ColumnType.STRING),
             new Column("OpenBy",ColumnType.INT),
             new Column("HandledBy",ColumnType.INT),
+            new Column("Priority",ColumnType.INT),
         };
 
         protected override Column[] Columns => columns;
@@ -39,6 +41,7 @@ namespace Servicedesk
                 Status = dr.GetString(3),
                 OpenBy = dr.GetInt32(4),
                 HandledBy = dr.GetInt32(5),
+                Priority = dr.GetInt32(6),
 
             });
         }
@@ -53,6 +56,7 @@ namespace Servicedesk
                 parameters.Add(new SqlParameter("@Status", Status));
                 parameters.Add(new SqlParameter("@OpenBy", OpenBy));
                 parameters.Add(new SqlParameter("@HandledBy", HandledBy));
+                parameters.Add(new SqlParameter("@Priority", Priority));
 
                 foreach (SqlParameter param in parameters)
                 {
