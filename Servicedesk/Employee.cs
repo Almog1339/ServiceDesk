@@ -11,10 +11,12 @@ namespace Servicedesk
         public string LastName { get; set; }
         public int EmpID { get; set; }
         public string UserName { get; set; }
+        public string DisplayName { get; set; }
         public string Pass { get; set; }
         public string Email { get; set; }
         public string Manager { get; set; }
         public int Permissions { get; set; }
         public string Title { get; set; }
+
     }
 }

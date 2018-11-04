@@ -5,9 +5,10 @@
     <title>ServiceDesk Login</title>
     <link rel="stylesheet" type="text/css" href="Css/login.css" />
     <script src="Js/angular.min.js"></script>
+    <script src="Js/DashBoard.js"></script>
 
 </head>
-<body ng-app="LoginForm" ng-controller="LoginCtrlFrm">
+<body ng-app="LoginFrm" ng-controller="LoginCtrlFrm">
     <div class="body"></div>
     <div class="grad">
 
@@ -17,7 +18,7 @@
                 <br />
                 <input type="password" name="password" placeholder="Password"  ng-model="user.password" ng-required="true" />
                 <br />
-                <input type="button" ng-click="btnSent()" value="Login" style="width:130px" />
+                <input type="button" ng-click="btnSend()" value="Login" style="width:130px" />
                 <input type="button" ng-click="divShowHide=true" value="Forgot password" style="width:130px" /><br />
 
             </div>
@@ -31,22 +32,5 @@
             </div>
         </form>
     </div>
-    <script>
-        var Login = angular.module('LoginForm', []);
-
-        Login.controller('LoginCtrlFrm', function ($scope, $http) {
-            $http({
-                method: "Get",
-                url: "ServiceDaskDash.html"
-            }).then(function isSuccess(response) {
-                $scope.myWelcome = response.data;
-            }, function isError(response) {
-                $scope.myWelcome = response.statusText;
-            });
-        });
-
-    </script>
-
-
 </body>
 </html>

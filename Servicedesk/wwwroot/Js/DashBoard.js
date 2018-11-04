@@ -9,7 +9,7 @@ Dashboard.controller('ContactList', ['$scope', function ($scope) {
 }]);
 
 Dashboard.controller('TicketsTable', ['$scope','$http', function ($scope , $http) {
-    $scope.Ticket = ['Ticket Number', 'Type', 'Short Description', 'Open By', 'Handled by', 'priority'];
+    $scope.Ticket = ['Ticket Number', 'Type', 'Short Description', 'Open By', 'Handled by'];
 
     $scope.GetTicketData = function () {
         $http.get('api/ticket').then(function (response) {
@@ -18,5 +18,11 @@ Dashboard.controller('TicketsTable', ['$scope','$http', function ($scope , $http
     };
     $scope.GetTicketData();
 }]);
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
+LoginFrm.controller('LoginCtrlFrm', ['$scope', '$http', function ($scope, $http) {
+    function btnSend($scope, $http) {
+        $http.get
+    }
+}]);
 
