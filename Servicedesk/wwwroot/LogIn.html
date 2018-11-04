@@ -5,32 +5,39 @@
     <title>ServiceDesk Login</title>
     <link rel="stylesheet" type="text/css" href="Css/login.css" />
     <script src="Js/angular.min.js"></script>
-    <script src="Js/DashBoard.js"></script>
 
 </head>
 <body ng-app="LoginFrm" ng-controller="LoginCtrlFrm">
     <div class="body"></div>
     <div class="grad">
 
-        <form name="frm" novalidate ng-hide="divShowHide">
+        <form name="frm" novalidate ng-show="divMaimFrm = true">
             <div class="login">
-                <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true" />
+                <input type="email" name="email" placeholder="Email" ng-required="true" required ng-model="userinfo"/>
                 <br />
-                <input type="password" name="password" placeholder="Password"  ng-model="user.password" ng-required="true" />
+                <input type="password" name="password" placeholder="Password" ng-required="true" required />
                 <br />
-                <input type="button" ng-click="btnSend()" value="Login" style="width:130px" />
-                <input type="button" ng-click="divShowHide=true" value="Forgot password" style="width:130px" /><br />
+                <input type="button" ng-click="btnSend('Login')" value="Login" style="width:130px" />
+                <input type="button" value="Forgot password" style="width:130px" /><br />
 
             </div>
         </form>
-        <form novalidate ng-show="divShowHide">
-            <div class="PasswordReset">
-                <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true" />
-                <br />
-                <input type="button" value="Reset Password" style="width:130px" />
-                <input type="button" ng-click="divShowHide=false" value="back" style="width:130px" />
-            </div>
-        </form>
     </div>
+
+    <script>
+        var LoginFrm = angular.module("LoginFrm", []);
+
+
+        LoginFrm.controller("LoginCtrlFrm", function btnSend($scope,$http) {
+                $http({
+                    method: "POST",
+                    url: "api/Login"
+                }).then(function isOk(response) {
+                    alert = "welcome"
+                })
+        });
+        
+        
+    </script>
 </body>
 </html>

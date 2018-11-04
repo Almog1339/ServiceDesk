@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -16,8 +17,8 @@ namespace Servicedesk.Controllers
         public const string ERROR = "ERROR";
         public static Dictionary<string, string> users = new Dictionary<string, string>();
         private static int countAdjustment = 0; 
-        [HttpGet]
-        public void Get()
+        [HttpPost]
+        public void Post()
         {
             string action = Request.Query["action"];
             string email = Request.Query["userName"];
@@ -34,15 +35,13 @@ namespace Servicedesk.Controllers
 
         private bool Login(string email, string password)
         {
-            return ValidataUser(email, password);
-        }
-        private bool ValidataUser(string email,string password)
-        {
-            if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email))
-                return false;
-            if (users.ContainsKey(email)) {
-                return users[email] == password;
-            }return true;
+            using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
+                if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email))
+                    return false;
+                conn.Open();
+                return DatabaseEntity.ValidataUser(email, password,conn);
+            }
+            
         }
     }
 }

@@ -90,6 +90,11 @@ namespace Servicedesk
             return true;
         }
 
+        public static bool ValidataUser(string email, string password, SqlConnection conn)
+        {
+            using (SqlCommand cmd= new SqlCommand("SELECT "))
+            return false;
+        }
     }
 }
 

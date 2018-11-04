@@ -20,9 +20,5 @@ Dashboard.controller('TicketsTable', ['$scope','$http', function ($scope , $http
 }]);
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-LoginFrm.controller('LoginCtrlFrm', ['$scope', '$http', function ($scope, $http) {
-    function btnSend($scope, $http) {
-        $http.get
-    }
-}]);
+
 
