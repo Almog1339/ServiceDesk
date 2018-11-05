@@ -94,7 +94,8 @@ namespace Servicedesk
             using (SqlCommand cmd = new SqlCommand(DBHelper.CONN_STRING)) {
                 
                 StringBuilder sb = new StringBuilder();
-                sb.Append("SELECT EMAIL FROM EmpData WHERE EMAIL =@EMAIL && PASSWORD =@PASS");
+                sb.Append("SELECT * FROM EmpData WHERE EMAIL =@EMAIL && PASSWORD =@PASS");
+                
             }
                 return false;
         }
