@@ -17,7 +17,7 @@
                 <br />
                 <input type="password" name="password" placeholder="Password" ng-required="true" required />
                 <br />
-                <input type="button" ng-click="btnSend('Login')" value="Login" style="width:130px" />
+                <input type="button" ng-click="btnSend()" value="Login" style="width:130px" />
                 <input type="button" value="Forgot password" style="width:130px" /><br />
 
             </div>
@@ -32,9 +32,8 @@
                 $http({
                     method: "POST",
                     url: "api/Login"
-                }).then(function isOk(response) {
-                    alert = "welcome"
-                })
+            }).then 
+
         });
         
         

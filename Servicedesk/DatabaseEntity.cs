@@ -63,7 +63,6 @@ namespace Servicedesk
                     return cmd.ExecuteNonQuery() == 1;
                 }
             }
-
         }
 
         private string DeleteSQL()
@@ -90,10 +89,14 @@ namespace Servicedesk
             return true;
         }
 
-        public static bool ValidataUser(string email, string password, SqlConnection conn)
+        public static bool ValidateUser(string email, string password, SqlConnection conn)
         {
-            using (SqlCommand cmd= new SqlCommand("SELECT "))
-            return false;
+            using (SqlCommand cmd = new SqlCommand(DBHelper.CONN_STRING)) {
+                
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT EMAIL FROM EmpData WHERE EMAIL =@EMAIL && PASSWORD =@PASS");
+            }
+                return false;
         }
     }
 }

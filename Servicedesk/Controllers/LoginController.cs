@@ -30,6 +30,8 @@ namespace Servicedesk.Controllers
                 case "login":
                     Response.WriteAsync(Login(email, password) ? OK : ERROR);
                     break;
+
+                //need to add the change passowrd option.
             }
         }
 
@@ -39,7 +41,11 @@ namespace Servicedesk.Controllers
                 if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email))
                     return false;
                 conn.Open();
-                return DatabaseEntity.ValidataUser(email, password,conn);
+                DatabaseEntity.ValidateUser(email, password, conn);
+
+
+
+                return DatabaseEntity.ValidateUser(email, password,conn);
             }
             
         }
