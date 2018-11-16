@@ -5,38 +5,49 @@
     <title>ServiceDesk Login</title>
     <link rel="stylesheet" type="text/css" href="Css/login.css" />
     <script src="Js/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
 
 </head>
-<body ng-app="LoginFrm" ng-controller="LoginCtrlFrm">
+<body>
     <div class="body"></div>
     <div class="grad">
 
-        <form name="frm" novalidate ng-show="divMaimFrm = true">
+        <form name="frm" novalidate >
             <div class="login">
-                <input type="email" name="email" placeholder="Email" ng-required="true" required ng-model="userinfo"/>
+                <input type="text" id="User" name="UserName" placeholder="UserName" ng-required="true" required />
                 <br />
-                <input type="password" name="password" placeholder="Password" ng-required="true" required />
+                <input type="password" id="Password" name="password" placeholder="Password" ng-required="true" required />
                 <br />
-                <input type="button" ng-click="btnSend()" value="Login" style="width:130px" />
+                <input type="button" onclick="btnSend()" value="Login" style="width:130px" />
                 <input type="button" value="Forgot password" style="width:130px" /><br />
 
             </div>
         </form>
     </div>
-
     <script>
-        var LoginFrm = angular.module("LoginFrm", []);
-
-
-        LoginFrm.controller("LoginCtrlFrm", function btnSend($scope,$http) {
-                $http({
-                    method: "POST",
-                    url: "api/Login"
-            }).then 
-
-        });
-        
-        
+        function btnSend() {
+            var password = document.getElementById("Password").value;
+            var user = document.getElementById("User").value;
+            var users = {
+                UserName: user,
+                Password: password
+            }
+            console.log(JSON.stringify(users))
+            var url = "https://localhost:44317/api/login";
+            var req = {
+                type: "POST",
+                url: url,
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(users)
+            };
+            $.ajax(req).then(function (data) {
+                console.log(data)
+            });
+        }
     </script>
 </body>
 </html>

@@ -6,11 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Controllers\HRCtrlController.cs" />
     <Content Include="DBHelper.cs" />
     <Content Include="Tickets.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="jQuery" Version="3.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>

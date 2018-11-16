@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "508fee09cb0b1bef4c0f69eb83f783d485056cb7"
+    "signature": "4b1f12bbc4fd98c3fa8263f61a32cd54eff6a6f9"
   },
   "compilationOptions": {
     "defines": [
@@ -26,7 +26,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.NETCore.App": "2.1.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.1"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.1",
+          "jQuery": "3.3.1"
         },
         "runtime": {
           "Servicedesk.dll": {}
@@ -35,6 +36,7 @@
           "Servicedesk.dll": {}
         }
       },
+      "jQuery/3.3.1": {},
       "Microsoft.CodeAnalysis.CSharp.Workspaces/2.8.0": {
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "2.8.0",
@@ -3462,6 +3464,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "jQuery/3.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Emsts1D6E2AgHVBm4cTD2dxoRyWVG+3zK1x8mYbf+k6aAArPTXHR2Ip++o1utlNbmYIzaPFnhGw3YDexp8PjlQ==",
+      "path": "jquery/3.3.1",
+      "hashPath": "jquery.3.3.1.nupkg.sha512"
     },
     "Microsoft.CodeAnalysis.CSharp.Workspaces/2.8.0": {
       "type": "package",

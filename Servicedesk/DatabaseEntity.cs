@@ -54,6 +54,33 @@ namespace Servicedesk
             }
             return item;
         }
+
+        public static bool ValidateUser(string LoginID, string Password)
+        {
+            using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT LoginID, PasswordSalt FROM HumanResources.Employee " +
+                    "LEFT JOIN PERSON.Password ON HumanResources.Employee.BusinessEntityID = Person.Password.BusinessEntityID " +
+                    "WHERE HumanResources.Employee.LoginID = @UserName AND Person.Password.PasswordSalt = @Password");
+
+                SqlCommand cmd = new SqlCommand(sb.ToString(), conn);
+                {
+
+                    cmd.Parameters.AddWithValue("@UserName", LoginID);
+                    cmd.Parameters.AddWithValue("@Password", Password);
+                    conn.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    {
+                        if (dr.Read()) {
+                            return true;
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            return false;
+         }
+        
         public bool Delete(object PrimaryKeyToBeDeleted)
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
@@ -84,21 +111,15 @@ namespace Servicedesk
             return sb.ToString();
         }
 
-        public bool Update(SqlParameter[] parameters)
+        public string Update(SqlParameter[] parameters)
         {
-            return true;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("UPDATE " + TableName);
+            sb.Append("SET " + GetColumnsCommaSeparated(false) + ") VALUES (");
+            sb.Append(GetColumnsCommaSeparated(false, true) + ")");
+            return sb.ToString();
         }
 
-        public static bool ValidateUser(string email, string password, SqlConnection conn)
-        {
-            using (SqlCommand cmd = new SqlCommand(DBHelper.CONN_STRING)) {
-                
-                StringBuilder sb = new StringBuilder();
-                sb.Append("SELECT 
-                
-            }
-                return false;
-        }
     }
 }
 

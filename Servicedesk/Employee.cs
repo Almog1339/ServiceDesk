@@ -7,17 +7,24 @@ namespace Servicedesk
 {
     public class Employee
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int EmpID { get; set; }
-        public string UserName { get; set; }
-        public string DisplayName { get; set; }
-        public string Pass { get; set; }
-        public string Email { get; set; }
-        public string Manager { get; set; }
-        public int Permissions { get; set; }
-        public string Title { get; set; }
+        public static int BusinessEntityID { get; set; }
+        public static int NationalIDNumber { get; set; }
+        public static string Password { get; set; }
+        public static string LoginID { get; set; }
+        public int OrganizationNode { get; set; }
+        public int OrganizationLevel { get; set; }
+        public string JobTitle { get; set; }
+        public DateTime BirthDate { get; set; }
+        public char MaritalStatus { get; set; }
+        public char Gender { get; set; }
+        public DateTime HireDate { get; set; }
+        public int SalariedFlag { get; set; }
+        public int VacationHours { get; set; }
+        public int SickLeaveHours { get; set; }
+        public int CurrentFlag { get; set; }
+        public int rowguid { get; set; }
+        public DateTime ModifiedDate { get; set; }
 
-    
+
     }
 }

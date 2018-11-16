@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Servicedesk.Controllers
 {
-    [Produces("application/json")]
+    //[Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
@@ -16,38 +16,31 @@ namespace Servicedesk.Controllers
         public const string OK = "OK";
         public const string ERROR = "ERROR";
         public static Dictionary<string, string> users = new Dictionary<string, string>();
-        private static int countAdjustment = 0; 
+
+        //[HttpPost]
+        //public void Post()
+        //{
+        //    string action = Request.Query["action"];
+        //    string UserName = Request.Query["UserName"];
+        //    string Password = Request.Query["Password"];
+
+        //    if (string.IsNullOrEmpty(action)|| string.IsNullOrEmpty(UserName)||string.IsNullOrEmpty(Password)) return;
+
+        //    switch (action) {
+        //        case "login":
+        //            Login(UserName, Password);
+        //            break;    
+        //    }
+        //}
         [HttpPost]
-        public void Post()
+        public bool Login([FromBody]Employee userData)
         {
-            string action = Request.Query["action"];
-            string email = Request.Query["userName"];
-            string password = Request.Query["password"];
-
-            if (action == null || email == null || password == null) return;
-
-            switch (action) {
-                case "login":
-                    Response.WriteAsync(Login(email, password) ? OK : ERROR);
-                    break;
-
-                //need to add the change passowrd option.
+            if (string.IsNullOrEmpty(Employee.Password) || string.IsNullOrEmpty(Employee.LoginID)) {
+                return false;
             }
-        }
-
-        private bool Login(string email, string password)
-        {
-            using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
-                if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email))
-                    return false;
-                conn.Open();
-                DatabaseEntity.ValidateUser(email, password, conn);
-
-
-
-                return DatabaseEntity.ValidateUser(email, password,conn);
+            else {
+                return DatabaseEntity.ValidateUser(Employee.LoginID, Employee.Password);
             }
-            
         }
     }
 }
