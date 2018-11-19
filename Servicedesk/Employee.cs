@@ -24,6 +24,7 @@ namespace Servicedesk
         public int CurrentFlag { get; set; }
         public int rowguid { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public int DepartmentID { get; set; }
 
 
     }

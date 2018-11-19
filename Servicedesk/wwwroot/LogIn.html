@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <title>ServiceDesk Login</title>
+    <script src="Js/Login.js"></script>
     <link rel="stylesheet" type="text/css" href="Css/login.css" />
-    <script src="Js/angular.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
@@ -15,7 +15,7 @@
     <div class="body"></div>
     <div class="grad">
 
-        <form name="frm" novalidate >
+        <form name="frm" novalidate>
             <div class="login">
                 <input type="text" id="User" name="UserName" placeholder="UserName" ng-required="true" required />
                 <br />
@@ -27,27 +27,5 @@
             </div>
         </form>
     </div>
-    <script>
-        function btnSend() {
-            var password = document.getElementById("Password").value;
-            var user = document.getElementById("User").value;
-            var users = {
-                UserName: user,
-                Password: password
-            }
-            console.log(JSON.stringify(users))
-            var url = "https://localhost:44317/api/login";
-            var req = {
-                type: "POST",
-                url: url,
-                contentType: "application/json",
-                dataType: "json",
-                data: JSON.stringify(users)
-            };
-            $.ajax(req).then(function (data) {
-                console.log(data)
-            });
-        }
-    </script>
 </body>
 </html>
