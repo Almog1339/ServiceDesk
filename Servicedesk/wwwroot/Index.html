@@ -1,19 +1,19 @@
 ﻿<!DOCTYPE html>
-<html ng-app="ServiceDesk" ng-controller="ServiceDeskCtrl">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>ServiceDesk Login</title>
-    <script src="Js/angular.min.js"></script>
-    <script src="Js/angular-route.min.js"></script>
-    <script src="Js/Login.js"></script>
+    <title></title>
+    <script src="Js/angular.js"></script>
+    <script src="Js/angular-route.js"></script>
+    <script src="Js/app.js"></script>
+    <script src="Js/DashBoard.js"></script>
 </head>
-<body>
+<body ng-app="ServiceDesk" ng-controller="ServiceDeskCtrl">
     <div class="container container-fluid">
-        <div class="navbar nav nav-justified navbar-dark">
+        <header class="navbar nav nav-justified navbar-dark">
             <div></div>
-        </div>
+        </header>
         <div class="sidebar-nav"></div>
-        <div></div>
+        <main ng-view></main>
         <div class="modal-footer"></div>
     </div>
 </body>
