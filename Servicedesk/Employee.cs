@@ -22,9 +22,9 @@ namespace Servicedesk
         public int VacationHours { get; set; }
         public int SickLeaveHours { get; set; }
         public int CurrentFlag { get; set; }
-        public int rowguid { get; set; }
+        public int Rowguid { get; set; }
+        public static int DepartmentID { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public int DepartmentID { get; set; }
 
 
     }

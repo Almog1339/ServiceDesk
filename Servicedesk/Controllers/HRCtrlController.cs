@@ -6,10 +6,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Servicedesk.wwwroot.Js
-{
+{//not done!!!
     [Route("api/[controller]")]
     [ApiController]
     public class HRCtrlController : ControllerBase
     {
+        [HttpGet]
+        public object HR([FromBody]Employee userData)
+        {
+            return true;
+        }
     }
 }
