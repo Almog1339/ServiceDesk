@@ -52,9 +52,7 @@ namespace Servicedesk
             }
             return item;
         }
-        //public static int DepartmentID = 0;
-
-        public static object ValidateUser(string LoginID, string Password, int departmentID)
+        public static object ValidateUser(string LoginID, string Password, int DepartmentID)
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
                 StringBuilder sb = new StringBuilder();
@@ -72,7 +70,7 @@ namespace Servicedesk
                     SqlDataReader dr = cmd.ExecuteReader();
                     {
                         if (dr.Read()) {
-                            return true;
+                            return DepartmentID;
                         }
                     }
                     conn.Close();

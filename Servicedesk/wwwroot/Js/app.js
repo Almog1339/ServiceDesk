@@ -1,25 +1,17 @@
-﻿var ServiceDesk = angular.module('ServiceDeskCtrl', ['ngRoute']);
+﻿var App = angular.module('App', []);
 
-ServiceDesk.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-        .when('/index.html', {
-            templateUrl: '/Login.html',
-            controller: 'LoginCtrl'
-        })
-        .otherwise({
-            redirectTo: '/index.html'
-        });
-}]);
 
-ServiceDesk.controller('LoginCtrl', function ($scope) {
+App.controller('LoginCtrl', function ($scope, $http) {
+    $scope.data = {
+        userName: $scope.UserName,
+        password: $scope.Password,
+        departmentID: DepartmentID
+    };
     $scope.SendData = function () {
-        $scope.data = {
-            userName: $scope.UserName,
-            password: $scope.Password,
-            departmentID: $scope.DepartmentID
-        };
-
-        $http.post("api/Login", JSON.stringify($scope.data)).then(function (response) {
+        $http.post("api/Login", $scope.data).then(function (response) {
+            console.log(response.data);
         });
+        
     };
 });
+
