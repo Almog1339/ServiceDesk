@@ -52,25 +52,24 @@ namespace Servicedesk
             }
             return item;
         }
-        public static object ValidateUser(string LoginID, string Password, int DepartmentID)
+        public static object ValidateUser(string LoginID, string Password)
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("SELECT LoginID, PasswordSalt FROM HumanResources.Employee " +
                     "LEFT JOIN PERSON.Password ON HumanResources.Employee.BusinessEntityID = Person.Password.BusinessEntityID " +
                     "WHERE HumanResources.Employee.LoginID = @LoginID AND Person.Password.PasswordSalt = @Password");
-                sb.Append("SELECT HumanResources.Department.DepartmentID FROM HumanResources.Employee LEFT JOIN HumanResources.EmployeeDepartmentHistory ON HumanResources.Employee.BusinessEntityID = HumanResources.EmployeeDepartmentHistory.BusinessEntityID LEFT JOIN HumanResources.Department ON HumanResources.EmployeeDepartmentHistory.DepartmentID = HumanResources.Department.DepartmentID WHERE HumanResources.EmployeeDepartmentHistory.EndDate IS NULL AND LoginID=@LoginID;");
+               
                 SqlCommand cmd = new SqlCommand(sb.ToString(), conn);
                 {
-
                     cmd.Parameters.AddWithValue("@LoginID", LoginID);
                     cmd.Parameters.AddWithValue("@Password", Password);
-                    cmd.Parameters.AddWithValue("@DepartmentID", Employee.DepartmentID);
+                    cmd.Parameters.AddWithValue("SELECT HumanResources.Department.DepartmentID FROM HumanResources.Employee LEFT JOIN HumanResources.EmployeeDepartmentHistory ON HumanResources.Employee.BusinessEntityID = HumanResources.EmployeeDepartmentHistory.BusinessEntityID LEFT JOIN HumanResources.Department ON HumanResources.EmployeeDepartmentHistory.DepartmentID = HumanResources.Department.DepartmentID WHERE HumanResources.EmployeeDepartmentHistory.EndDate IS NULL AND LoginID=@LoginID", Employee.DepartmentID);
                     conn.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
                     {
                         if (dr.Read()) {
-                            return DepartmentID;
+                            return Employee.DepartmentID;
                         }
                     }
                     conn.Close();

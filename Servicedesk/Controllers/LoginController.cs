@@ -1,10 +1,7 @@
-﻿//using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 
 namespace Servicedesk.Controllers
 {
@@ -17,44 +14,84 @@ namespace Servicedesk.Controllers
         public static Dictionary<string, string> users = new Dictionary<string, string>();
 
         [HttpPost]
-        public object Login([FromBody]Employee userData)
+        public async Task<object> Login([FromBody]Employee userData)
         {
             if (string.IsNullOrEmpty(Employee.Password) || string.IsNullOrEmpty(Employee.LoginID)) {
                 return false;
             }
             else {
+                DatabaseEntity.ValidateUser(Employee.Password, Employee.LoginID);
                 switch (Employee.DepartmentID) {
                     case 1:
                     case 2:
                     case 6:
-
-                        break;
+                        using (HttpClient HrClient = new HttpClient()) {
+                            using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
+                                HttpContent content = httpResponse.Content;
+                                string HrContent = await content.ReadAsStringAsync();
+                                return HrContent;
+                            }
+                        }
+                        
                     case 3:
                     case 4:
-
-                        break;
+                        using (HttpClient HrClient = new HttpClient()) {
+                            using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
+                                HttpContent content = httpResponse.Content;
+                                string HrContent = await content.ReadAsStringAsync();
+                                return HrContent;
+                            }
+                        }
+                      
                     case 9:
+                        using (HttpClient HrClient = new HttpClient()) {
+                            using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
+                                HttpContent content = httpResponse.Content;
+                                string HrContent = await content.ReadAsStringAsync();
+                                return HrContent;
+                            }
+                        }
 
-                        break;
                     case 17:
-
-                        break;
+                        using (HttpClient HrClient = new HttpClient()) {
+                            using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
+                                HttpContent content = httpResponse.Content;
+                                string HrContent = await content.ReadAsStringAsync();
+                                return HrContent;
+                            }
+                        }
                     case 5:
                     case 7:
                     case 8:
                     case 12:
                     case 13:
                     case 15:
-
-                        break;
+                        using (HttpClient HrClient = new HttpClient()) {
+                            using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
+                                HttpContent content = httpResponse.Content;
+                                string HrContent = await content.ReadAsStringAsync();
+                                return HrContent;
+                            }
+                        }
                     case 10:
                     case 11:
                     case 16:
                     case 14:
-
-                        break;
+                        using (HttpClient HrClient = new HttpClient()) {
+                            using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
+                                HttpContent content = httpResponse.Content;
+                                string HrContent = await content.ReadAsStringAsync();
+                                return HrContent;
+                            }
+                        }
                     default:
-                        break;
+                        using (HttpClient HrClient = new HttpClient()) {
+                            using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
+                                HttpContent content = httpResponse.Content;
+                                string HrContent = await content.ReadAsStringAsync();
+                                return HrContent;
+                            }
+                        }
                 }
             }
         }
