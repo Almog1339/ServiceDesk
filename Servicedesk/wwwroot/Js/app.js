@@ -5,13 +5,16 @@ App.controller('LoginCtrl', function ($scope, $http) {
 
     $scope.SendData = function () {
         var userData = {
-        userName: $scope.UserName,
-        password: $scope.Password
+            LoginID: $scope.UserName,
+            Password: $scope.Password
         };
         console.log(userData);
-        $http.post("api/Login", userData).then(function (response) {
-            if (response.userData) {
-                console.log('Ok');
+        $http.post("api/Login", JSON.stringify(userData)).then(function (response) {
+            if (Response.toString()) {
+                console.log('ok');
+            }
+            else {
+                console.log('Please check your code');
             }
         });
         

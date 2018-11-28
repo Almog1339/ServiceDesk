@@ -16,11 +16,11 @@ namespace Servicedesk.Controllers
         [HttpPost]
         public async Task<object> Login([FromBody]Employee userData)
         {
-            if (string.IsNullOrEmpty(Employee.Password) || string.IsNullOrEmpty(Employee.LoginID)) {
+            if (string.IsNullOrEmpty(userData.Password) || string.IsNullOrEmpty(userData.LoginID)) {
                 return false;
             }
             else {
-                DatabaseEntity.ValidateUser(Employee.Password, Employee.LoginID);
+                DatabaseEntity.ValidateUser(userData.LoginID, userData.Password);
                 switch (Employee.DepartmentID) {
                     case 1:
                     case 2:

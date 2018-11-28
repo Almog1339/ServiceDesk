@@ -27,7 +27,7 @@ namespace Servicedesk
             if (Columns.Length > 0) sb.Remove(sb.Length - 1, 1);
             return sb.ToString();
         }
-       
+
         public string SelectSql()
         {
             StringBuilder sb = new StringBuilder();
@@ -59,25 +59,31 @@ namespace Servicedesk
                 sb.Append("SELECT LoginID, PasswordSalt FROM HumanResources.Employee " +
                     "LEFT JOIN PERSON.Password ON HumanResources.Employee.BusinessEntityID = Person.Password.BusinessEntityID " +
                     "WHERE HumanResources.Employee.LoginID = @LoginID AND Person.Password.PasswordSalt = @Password");
-               
+                sb.Append("SELECT HumanResources.Department.DepartmentID FROM HumanResources.Employee LEFT JOIN HumanResources.EmployeeDepartmentHistory ON HumanResources.Employee.BusinessEntityID = HumanResources.EmployeeDepartmentHistory.BusinessEntityID LEFT JOIN HumanResources.Department ON HumanResources.EmployeeDepartmentHistory.DepartmentID = HumanResources.Department.DepartmentID WHERE HumanResources.EmployeeDepartmentHistory.EndDate IS NULL AND LoginID=@LoginID");
                 SqlCommand cmd = new SqlCommand(sb.ToString(), conn);
                 {
                     cmd.Parameters.AddWithValue("@LoginID", LoginID);
                     cmd.Parameters.AddWithValue("@Password", Password);
-                    cmd.Parameters.AddWithValue("SELECT HumanResources.Department.DepartmentID FROM HumanResources.Employee LEFT JOIN HumanResources.EmployeeDepartmentHistory ON HumanResources.Employee.BusinessEntityID = HumanResources.EmployeeDepartmentHistory.BusinessEntityID LEFT JOIN HumanResources.Department ON HumanResources.EmployeeDepartmentHistory.DepartmentID = HumanResources.Department.DepartmentID WHERE HumanResources.EmployeeDepartmentHistory.EndDate IS NULL AND LoginID=@LoginID", Employee.DepartmentID);
-                    conn.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    {
-                        if (dr.Read()) {
-                            return Employee.DepartmentID;
-                        }
+                    cmd.Parameters.AddWithValue("@DepartmentID", Employee.DepartmentID);
+                    if (Employee.DepartmentID == 0) {
+                        return Employee.DepartmentID;
                     }
-                    conn.Close();
+                    else {
+                        conn.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        {
+                            if (dr.Read()) {
+                                return Employee.DepartmentID;
+                            }
+                        }
+                        conn.Close();
+                    }
+
                 }
             }
             return false;
         }
-        
+
         public bool Delete(object PrimaryKeyToBeDeleted)
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
