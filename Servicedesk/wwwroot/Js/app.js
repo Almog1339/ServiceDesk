@@ -8,16 +8,7 @@ App.controller('LoginCtrl', function ($scope, $http) {
             LoginID: $scope.UserName,
             Password: $scope.Password
         };
-        console.log(userData);
-        $http.post("api/Login", JSON.stringify(userData)).then(function (response) {
-            if (Response.toString()) {
-                console.log('ok');
-            }
-            else {
-                console.log('Please check your code');
-            }
-        });
-        
+            $http.post("api/Login", JSON.stringify(userData));
     };
 });
 

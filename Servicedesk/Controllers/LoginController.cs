@@ -9,10 +9,6 @@ namespace Servicedesk.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        public const string OK = "OK";
-        public const string ERROR = "ERROR";
-        public static Dictionary<string, string> users = new Dictionary<string, string>();
-
         [HttpPost]
         public async Task<object> Login([FromBody]Employee userData)
         {
@@ -32,7 +28,7 @@ namespace Servicedesk.Controllers
                                 return HrContent;
                             }
                         }
-                        
+
                     case 3:
                     case 4:
                         using (HttpClient HrClient = new HttpClient()) {
@@ -42,7 +38,7 @@ namespace Servicedesk.Controllers
                                 return HrContent;
                             }
                         }
-                      
+
                     case 9:
                         using (HttpClient HrClient = new HttpClient()) {
                             using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
@@ -97,3 +93,4 @@ namespace Servicedesk.Controllers
         }
     }
 }
+    
