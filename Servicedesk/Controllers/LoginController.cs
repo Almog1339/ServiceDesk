@@ -81,7 +81,13 @@ namespace Servicedesk.Controllers
                             }
                         }
                     default:
-                        return false;
+                        using (HttpClient HrClient = new HttpClient()) {
+                            using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
+                                HttpContent content = httpResponse.Content;
+                                string HrContent = await content.ReadAsStringAsync();
+                                return HrContent;
+                            }
+                        }
                 }
             }
         }
