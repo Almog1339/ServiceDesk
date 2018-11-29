@@ -62,29 +62,27 @@ namespace Servicedesk
                 sb.Append("SELECT LoginID, PasswordSalt FROM HumanResources.Employee " +
                     "LEFT JOIN PERSON.Password ON HumanResources.Employee.BusinessEntityID = Person.Password.BusinessEntityID " +
                     "WHERE HumanResources.Employee.LoginID = @LoginID AND Person.Password.PasswordSalt = @Password");
-
+                //StringBuilder sb1 = new StringBuilder();
+                //sb1.Append("SELECT HumanResources.Department.DepartmentID FROM HumanResources.Employee LEFT JOIN HumanResources.EmployeeDepartmentHistory ON HumanResources.Employee.BusinessEntityID = HumanResources.EmployeeDepartmentHistory.BusinessEntityID LEFT JOIN HumanResources.Department ON HumanResources.EmployeeDepartmentHistory.DepartmentID = HumanResources.Department.DepartmentID where HumanResources.EmployeeDepartmentHistory.EndDate IS NULL AND LoginID = @LoginID");
                 SqlCommand cmd = new SqlCommand(sb.ToString(), conn);
                 {
                     cmd.Parameters.AddWithValue("@LoginID", LoginID);
                     cmd.Parameters.AddWithValue("@Password", Password);
+
                     conn.Open();
-                    StringBuilder SbDepartment = new StringBuilder();
-                    SbDepartment.Append("SELECT HumanResources.Department.DepartmentID FROM HumanResources.Employee LEFT JOIN HumanResources.EmployeeDepartmentHistory ON HumanResources.Employee.BusinessEntityID = HumanResources.EmployeeDepartmentHistory.BusinessEntityID LEFT JOIN HumanResources.Department ON HumanResources.EmployeeDepartmentHistory.DepartmentID = HumanResources.Department.DepartmentID where HumanResources.EmployeeDepartmentHistory.EndDate IS NULL AND LoginID = @LoginID");
-                    SbDepartment.ToString();
-                    cmd.Parameters.AddWithValue("@DepartmentID", Employee.DepartmentID);
 
                     SqlDataReader dr = cmd.ExecuteReader();
                     {
                         if (dr.Read()) {
-
-                            return Employee.DepartmentID;
+                            return true;
                         }
                     }
-                    conn.Close();
                 }
+                return false;
             }
-            return false;
         }
+
+
 
         public bool Delete(object PrimaryKeyToBeDeleted)
         {
@@ -125,4 +123,5 @@ namespace Servicedesk
             return sb.ToString();
         }
     }
+
 }
