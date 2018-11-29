@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="Dashboard">
+<head>
+    <meta charset="utf-8" />
+    <title>Service Desk Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="/Css/BootDashboard.css">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <script src="Js/angular.min.js"></script>
+    <script src="Js/DashBoard.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Service Desk Dashboard</h1>
+        <!-- Nav Bar Start-->
+        <div>
+            <div class="navbar-toggler navbar-brand navbar-toggler-icon" ng-click="toggleBtn= !toggleBtn">
+                <span> </span>
+                <span> </span>
+                <span> </span>
+            </div>
+            <div ng-show="toggleBtn" ng-controller="list" class="sidebar-nav">
+
+                <ul>
+                    <li><img src="Css/Image's/LogonAvatar.jpg" class="navbar-brand" style="width:80px; height:80px; margin:20%;margin-top:-20px;" /></li>
+                    <li ng-repeat="b in Buttons">
+                        {{b}}
+
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Nav Bar Ends-->
+            <div>
+                <!-- First Table Start-->
+                <div ng-controller="TicketsTable">
+                    Tickets Table
+                    <table class="table table-bordered table-hover">
+                        <tr class="table-bordered table-dark">
+
+                            <th><a ng-click="sortBy('Ticket Number')">Ticket Number</a></th>
+                            <th><a ng-click="sortBy('Type')">Type</a></th>
+                            <th><a>Short Description</a></th>
+                            <th><a>Status</a></th>
+                            <th><a ng-click="sortBy('Open By')">Open By</a></th>
+                            <th><a ng-click="sortBy('Handled by')">Handled by</a></th>
+
+                        </tr>
+                        <tr ng-repeat="data in ticketsData | orderBy: ColToSortBy | filter: ticketSherch">
+                            <!--<th><a ng-click="sortBy('priority')"></a>Priority</th>-->
+                            <td>{{data.ticketNumber}}</td>
+                            <td>{{data.type}}</td>
+                            <td>{{data.shortDescription}}</td>
+                            <td>{{data.status}}</td>
+                            <td>{{data.openBy}}</td>
+                            <td>{{data.handledBy}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- First Table Ends-->
+                <div>
+                    <canvas></canvas>
+                </div>
+                <div>
+                    <canvas></canvas>
+                </div>
+                <div>
+                    <canvas></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Js/bootstrap.min.js"></script>
+
+</body>
+</html>

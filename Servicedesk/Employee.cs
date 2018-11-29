@@ -7,11 +7,10 @@ namespace Servicedesk
 {
     public class Employee
     {
-        public static int BusinessEntityID { get; set; }
-        public static int NationalIDNumber { get; set; }
-        public static string Password { get; set; }
-        public static string LoginID { get; set; }
-        public int OrganizationNode { get; set; }
+        public int BusinessEntityID { get; set; }
+        public int NationalIDNumber { get; set; }
+        public string Password { get; set; }
+        public string LoginID { get; set; }
         public int OrganizationLevel { get; set; }
         public string JobTitle { get; set; }
         public DateTime BirthDate { get; set; }
@@ -22,9 +21,9 @@ namespace Servicedesk
         public int VacationHours { get; set; }
         public int SickLeaveHours { get; set; }
         public int CurrentFlag { get; set; }
-        public int rowguid { get; set; }
+        public int Rowguid { get; set; }
+        public static int DepartmentID { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public int DepartmentID { get; set; }
 
 
     }

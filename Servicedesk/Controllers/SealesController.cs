@@ -5,16 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Servicedesk.wwwroot.Js
+namespace Servicedesk.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HRCtrlController : ControllerBase
+    public class SealesController : ControllerBase
     {
-        [HttpGet]
-        public void  Page()
-        {
-           
-        }
     }
 }

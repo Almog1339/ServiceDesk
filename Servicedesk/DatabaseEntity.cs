@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data.Sql;
+using System.Data.SqlTypes;
+
 
 namespace Servicedesk
 {
@@ -27,8 +30,6 @@ namespace Servicedesk
             if (Columns.Length > 0) sb.Remove(sb.Length - 1, 1);
             return sb.ToString();
         }
-
-
 
         public string SelectSql()
         {
@@ -54,33 +55,35 @@ namespace Servicedesk
             }
             return item;
         }
-
-        public static bool ValidateUser(string LoginID, string Password)
+        public static int ValidateUser(string LoginID, string Password)
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("SELECT LoginID, PasswordSalt FROM HumanResources.Employee " +
-                    "LEFT JOIN PERSON.Password ON HumanResources.Employee.BusinessEntityID = Person.Password.BusinessEntityID " +
-                    "WHERE HumanResources.Employee.LoginID = @LoginID AND Person.Password.PasswordSalt = @Password");
-                sb.Append("SELECT HumanResources.Department.DepartmentID FROM HumanResources.Employee LEFT JOIN HumanResources.EmployeeDepartmentHistory ON HumanResources.Employee.BusinessEntityID = HumanResources.EmployeeDepartmentHistory.BusinessEntityID LEFT JOIN HumanResources.Department ON HumanResources.EmployeeDepartmentHistory.DepartmentID = HumanResources.Department.DepartmentID WHERE HumanResources.EmployeeDepartmentHistory.EndDate IS NULL AND LoginID=@LoginID;");
-                SqlCommand cmd = new SqlCommand(sb.ToString(), conn);
-                {
+                  "LEFT JOIN PERSON.Password ON HumanResources.Employee.BusinessEntityID = Person.Password.BusinessEntityID " +
+                  "WHERE HumanResources.Employee.LoginID = @LoginID AND Person.Password.PasswordSalt = @Password ");
+                
+                sb.Append(" SELECT HumanResources.Department.DepartmentID FROM HumanResources.Employee LEFT JOIN HumanResources.EmployeeDepartmentHistory ON HumanResources.Employee.BusinessEntityID = HumanResources.EmployeeDepartmentHistory.BusinessEntityID LEFT JOIN HumanResources.Department ON HumanResources.EmployeeDepartmentHistory.DepartmentID = HumanResources.Department.DepartmentID where HumanResources.EmployeeDepartmentHistory.EndDate IS NULL AND LoginID = @LoginID");
+                using (SqlCommand cmd = new SqlCommand(sb.ToString(), conn)) {
                     cmd.Parameters.AddWithValue("@LoginID", LoginID);
                     cmd.Parameters.AddWithValue("@Password", Password);
-                    //cmd.Parameters.AddWithValue("@DepartmentID", DepartmentID);
+                    
                     conn.Open();
+
                     SqlDataReader dr = cmd.ExecuteReader();
                     {
                         if (dr.Read()) {
-                            return true;
+                            short temp = dr.GetInt16(0);
+                            return temp;
                         }
                     }
-                    conn.Close();
                 }
+                return -1;
             }
-            return false;
         }
-        
+
+
+
         public bool Delete(object PrimaryKeyToBeDeleted)
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
@@ -119,7 +122,6 @@ namespace Servicedesk
             sb.Append(GetColumnsCommaSeparated(false, true) + ")");
             return sb.ToString();
         }
-
     }
-}
 
+}
