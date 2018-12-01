@@ -2,45 +2,23 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>ServiceDesk Login</title>
-    <script src="Js/angular.min.js"></script>
-    <script src="Js/angular-route.min.js"></script>
+    <script src="Js/angular.js"></script>
+    <script src="Js/app.js"></script>
+    <script src="Js/angular-animate.js"></script>
     <link rel="stylesheet" type="text/css" href="Css/login.css" />
+    <title></title>
 </head>
-<body>
+<body ng-app="App" ng-controller="LoginCtrl">
     <div class="body"></div>
     <div class="grad">
-
-        <form name="frm" ng-app="Login" ng-controller="LoginCtrl">
             <div class="login">
-                <input type="text" name="UserName" placeholder="UserName" ng-required="true" required />
+                <input type="text" ng-model="UserName" name="UserName" placeholder="UserName" ng-required="true" required />
                 <br />
-                <input type="password" name="password" placeholder="Password" ng-required="true" required />
+                <input type="password" ng-model="Password" placeholder="Password" ng-required="true" required />
                 <br />
                 <input type="button" ng-click="SendData()" value="Login" /><br />
+                
             </div>
-        </form>
     </div>
-    <script>
-        var Login = angular.module('Login', ["ngRoute"]);
-        Login.controller('LoginCtrl', function ($scope, $http) {
-
-            $scope.data = {
-                userName : $scope.UserName,
-                password : $scope.Password
-            };
-
-            $scope.SendData = function () {
-                $http.post("api/Login", $scope.data).then(function (response) {
-                    if (response.data) {
-                        console.log() = true;
-                    } else {
-                        console.log() = false;
-                    }
-                });
-            }
-        });
-    </script>
-
 </body>
 </html>

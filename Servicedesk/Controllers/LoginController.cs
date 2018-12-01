@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
+using System.IO;
+using System;
 
 namespace Servicedesk.Controllers
 {
@@ -9,36 +11,32 @@ namespace Servicedesk.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+
         [HttpPost]
-        public async Task<object> Login([FromBody]Employee userData)
+        public async Task Login([FromBody]Employee userData)
         {
             if (string.IsNullOrEmpty(userData.Password) || string.IsNullOrEmpty(userData.LoginID)) {
-                return false;
+
             }
             else {
                 int DepartmentID;
 
                 DepartmentID = DatabaseEntity.ValidateUser(userData.LoginID, userData.Password);
-                
+
                 switch (DepartmentID) {
                     case 1:
                     case 2:
                     case 6:
-                        using (HttpClient HrClient = new HttpClient()) {
-                            using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
-                                HttpContent content = httpResponse.Content;
-                                string HrContent = await content.ReadAsStringAsync();
-                                return HrContent;
-                            }
-                        }
-
+                        string page = "wwwroot/Research.html";
+                        HttpContent
+                        
                     case 3:
                     case 4:
                         using (HttpClient HrClient = new HttpClient()) {
                             using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
                                 HttpContent content = httpResponse.Content;
                                 string HrContent = await content.ReadAsStringAsync();
-                                return HrContent;
+                                break;
                             }
                         }
 
@@ -47,7 +45,7 @@ namespace Servicedesk.Controllers
                             using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
                                 HttpContent content = httpResponse.Content;
                                 string HrContent = await content.ReadAsStringAsync();
-                                return HrContent;
+                                break;
                             }
                         }
 
@@ -56,7 +54,7 @@ namespace Servicedesk.Controllers
                             using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
                                 HttpContent content = httpResponse.Content;
                                 string HrContent = await content.ReadAsStringAsync();
-                                return HrContent;
+                                break;
                             }
                         }
                     case 5:
@@ -69,7 +67,7 @@ namespace Servicedesk.Controllers
                             using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
                                 HttpContent content = httpResponse.Content;
                                 string HrContent = await content.ReadAsStringAsync();
-                                return HrContent;
+                                break;
                             }
                         }
                     case 10:
@@ -80,14 +78,14 @@ namespace Servicedesk.Controllers
                             using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
                                 HttpContent content = httpResponse.Content;
                                 string HrContent = await content.ReadAsStringAsync();
-                                return HrContent;
+                                break;
                             }
                         }
                     default:
-                        return false;
+                        break;
                 }
             }
         }
+
     }
 }
-    

@@ -1,4 +1,4 @@
-﻿var App = angular.module('App', []);
+﻿var App = angular.module('App', ['ngAnimate']);
 
 
 App.controller('LoginCtrl', function ($scope, $http) {

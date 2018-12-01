@@ -55,13 +55,13 @@ namespace Servicedesk
             }
             return item;
         }
-        public static int ValidateUser(string LoginID, string Password)
+        public static short ValidateUser(string LoginID, string Password)
         {
             using (SqlConnection conn = new SqlConnection(DBHelper.CONN_STRING)) {
                 StringBuilder sb = new StringBuilder();
-                sb.Append("SELECT LoginID, PasswordSalt FROM HumanResources.Employee " +
-                  "LEFT JOIN PERSON.Password ON HumanResources.Employee.BusinessEntityID = Person.Password.BusinessEntityID " +
-                  "WHERE HumanResources.Employee.LoginID = @LoginID AND Person.Password.PasswordSalt = @Password ");
+                //sb.Append("SELECT LoginID, PasswordSalt FROM HumanResources.Employee " +
+                //  "LEFT JOIN PERSON.Password ON HumanResources.Employee.BusinessEntityID = Person.Password.BusinessEntityID " +
+                //  "WHERE HumanResources.Employee.LoginID = @LoginID AND Person.Password.PasswordSalt = @Password ");
                 
                 sb.Append(" SELECT HumanResources.Department.DepartmentID FROM HumanResources.Employee LEFT JOIN HumanResources.EmployeeDepartmentHistory ON HumanResources.Employee.BusinessEntityID = HumanResources.EmployeeDepartmentHistory.BusinessEntityID LEFT JOIN HumanResources.Department ON HumanResources.EmployeeDepartmentHistory.DepartmentID = HumanResources.Department.DepartmentID where HumanResources.EmployeeDepartmentHistory.EndDate IS NULL AND LoginID = @LoginID");
                 using (SqlCommand cmd = new SqlCommand(sb.ToString(), conn)) {
