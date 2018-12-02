@@ -27,9 +27,13 @@ namespace Servicedesk.Controllers
                     case 1:
                     case 2:
                     case 6:
-                        string page = "wwwroot/Research.html";
-                        HttpContent
-                        
+                        using (HttpClient HrClient = new HttpClient()) {
+                            using (HttpResponseMessage httpResponse = await HrClient.GetAsync("api/HrCtrlController")) {
+                                HttpContent content = httpResponse.Content;
+                                string HrContent = await content.ReadAsStringAsync();
+                                break;
+                            }
+                        }
                     case 3:
                     case 4:
                         using (HttpClient HrClient = new HttpClient()) {
