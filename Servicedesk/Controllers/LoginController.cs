@@ -15,8 +15,9 @@ namespace Servicedesk.Controllers
         [HttpPost]
         public async Task Login([FromBody]Employee userData)
         {
-            if (string.IsNullOrEmpty(userData.Password) || string.IsNullOrEmpty(userData.LoginID)) {
-
+            if (string.IsNullOrEmpty(userData.Password) || string.IsNullOrEmpty(userData.LoginID))
+            {
+                return;
             }
             else {
                 int DepartmentID;
